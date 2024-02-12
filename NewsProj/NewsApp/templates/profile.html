@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>User Profile</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        
+        body {
+            padding-top: 50px;
+            background-color: #629bd3; 
+            font-size: 18px;
+            color: #333; 
+        }
+
+        .profile-container {
+            max-width: 800px;
+            margin: 0 auto; 
+            padding: 30px;
+            background-color: #c4dceb;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgb(22, 73, 132)
+        }
+
+        .profile-pic-container {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .profile-pic {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-right: 20px;
+            border: 3px solid #617e9d; 
+        }
+
+        .profile-details {
+            flex-grow: 1;
+        }
+
+        .profile-info {
+            margin-bottom: 20px;
+        }
+
+        .profile-actions {
+            text-align: center;
+        }
+
+        .edit-profile-container {
+            display: inline-block;
+            margin-bottom: 20px;
+        }
+
+        .edit-profile-container .btn {
+            padding: 10px 20px;
+            font-size: 16px;
+            
+        }
+
+       
+
+        .saved-post-title {
+            font-size: 24px;
+            color: #007bff; 
+            margin-bottom: 20px;
+        }
+
+        .saved-post-card {
+            transition: transform 0.3s ease;
+            border: 1px solid #ddd; 
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .saved-post-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
+        }
+
+        .card-img-top {
+            height: 200px; 
+            object-fit: cover;
+        }
+
+        .card-body {
+            padding: 20px;
+        }
+
+        .card-title {
+            color: #333; 
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .card-text {
+            color: #555; 
+            margin-bottom: 15px;
+        }
+
+        .btn-success {
+            background-color: #2868a7; 
+           
+        }
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="profile-container">
+            <div class="profile-pic-container">
+                <img src="{{ profile.profilePic.url }}" alt="Profile Picture" class="profile-pic">
+                <div class="profile-details">
+                    <p class="username">{{ user }}</p>
+                    <p class="profile-info">{{ profile.name }}</p>
+                    <p class="profile-info">{{ profile.about }}</p>
+                    <p class="profile-info">{{ profile.DOB }}</p>
+                </div>
+            </div>
+            <div class="profile-actions">
+                <div class="edit-profile-container">
+                    <a href="{% url 'editprofile' user.username %}" class="btn btn-primary">Edit Profile</a>
+                </div>
+            </div>
+            <hr> 
+            <h2 class="saved-post-title">Saved Posts</h2>
+            <div class="row">
+                {% for saved_post in saved_posts %}
+                <div class="col-md-6">
+                    <div class="card saved-post-card mb-3">
+                        <img src="{{ saved_post.image_url }}" class="card-img-top" alt="...">
+                        <div class="card-body">
+                            <p class="card-text">{{ saved_post.author }}</p>
+                            <h5 class="card-title">{{ saved_post.title }}</h5>
+                            <p class="card-text">{{ saved_post.description }}</p>
+                            <hr>
+                            <small>Published: {{ saved_post.published_at }}</small>
+                            <a href="{{ saved_post.url }}" target="_blank" class="btn btn-success mt-3">Read More</a>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

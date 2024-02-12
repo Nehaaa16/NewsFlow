@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>News</h1>
+    {% if user.is_authenticated %}
+        {% if user_profile.subscription_expiry %}
+            {% if user_profile.subscription_expiry < timezone.now %}
+                <p>Your subscription has expired. Please subscribe to a premium plan to continue accessing premium content.</p>
+                <a href="{% url 'premium' %}">Subscribe Now</a>
+            {% else %}
+                <p>Welcome, {{ user.username }}! You have access to premium content.</p>
+                
+            {% endif %}
+        {% else %}
+            <p>Welcome, {{ user.username }}! You have access to premium content.</p>
+           
+        {% endif %}
+    {% else %}
+        <p>Please <a href="{% url 'login' %}">log in</a> to access premium content.</p>
+    {% endif %}
+</body>
+</html>

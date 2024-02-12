@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Edit Profile</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        
+        body {
+            padding-top: 50px;
+            background-color:  #629bd3;
+        }
+        .form-container {
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: #c4dceb; 
+            border-radius: 10px; 
+            box-shadow: 0 0 20px rgb(22, 73, 132);
+            padding: 20px;
+            margin-bottom: 20px; 
+        }
+        .form-group {
+            margin-bottom: 20px;
+        }
+        .profile-pic-container {
+            margin-top: 20px; 
+        }
+    </style>
+</head>
+<body>
+    <div class="container form-container">
+        <h1>Edit Profile</h1>
+        <form method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            
+            <div class="form-group">
+                <label for="name" class="form-label">Name:</label>
+                <input type="text" id="name" name="name" value="{{ profile.name }}" class="form-control">
+            </div>
+
+            <div class="form-group">
+                <label for="about" class="form-label">About:</label>
+                <textarea id="about" name="about" rows="4" cols="50" class="form-control">{{ profile.about }}</textarea>
+            </div>
+
+            <div class="form-group">
+                <label for="profilePic" class="form-label">Profile Picture:</label>
+                <input type="file" id="profilePic" name="profilePic" class="form-control">
+            </div>
+
+            <div class="form-group">
+                <label for="DOB" class="form-label">Date of Birth:</label>
+                <input type="date" id="DOB" name="DOB" value="{{ profile.DOB }}" class="form-control">
+            </div>
+
+            <button type="submit" class="btn btn-primary">Save</button>
+        </form>
+
+        
+        {% if profile.profilePic %}
+            <div class="profile-pic-container">
+                <label class="form-label">Profile Picture:</label>
+                <img src="{{ profile.profilePic.url }}"  class="img-fluid">
+            </div>
+        {% endif %}
+    </div>
+    
+    
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

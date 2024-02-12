@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Premium Plans</title>
+    <style>
+        
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color:   #629bd3; 
+        }
+
+       
+        .plan-container {
+            display: flex;
+            flex-direction: column; 
+            justify-content: center; 
+            align-items: center; 
+            width: 70%; 
+            background-color: #5a92ca;  
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+       
+        .plan-box {
+            width: 30%; 
+            margin: 10px;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            background-color: #b0d7ef;  
+            color: #000; 
+        }
+
+     
+        .payment-button {
+            display: block;
+            width: 100px;
+            margin-top: 10px;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            background-color: #007bff;
+            color: #fff;
+            cursor: pointer;
+        }
+
+        
+        .payment-button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <div class="plan-container">
+        <div class="plan-box">
+            <h2>3-Day Plan</h2>
+            <p>Access to premium content for 3 days</p>
+            <p>Price: $2.42</p>
+            <a class="payment-button" href="/payment" onclick="showPayment('plan1')">Make Payment</a>
+        </div>
+        <div class="plan-box">
+            <h2>7-Day Plan</h2>
+            <p>Access to premium content for 7 days</p>
+            <p>Price: $6.03</p>
+            <a class="payment-button" href="/payment" onclick="showPayment('plan1')">Make Payment</a>
+        </div>
+        <div class="plan-box">
+            <h2>30-Day Plan</h2>
+            <p>Access to premium content for 30 days</p>
+            <p>Price: $24.1</p>
+            <a class="payment-button" href="/payment" onclick="showPayment('plan1')">Make Payment</a>
+        </div>
+    </div>
+
+    <script>
+        function showPayment(planId) {
+            console.log("User clicked Make Payment for plan:", planId);
+        }
+    </script>
+</body>
+</html>

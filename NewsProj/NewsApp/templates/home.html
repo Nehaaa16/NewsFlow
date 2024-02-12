@@ -1,0 +1,58 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}
+    News App
+{% endblock %}
+{% block body %}
+    <style>
+        .card {
+            height: 100%;
+        }
+
+        .card-body {
+            height: 100%;
+        }
+
+        .card-footer {
+            flex-grow: 1;
+            box-shadow: 0 0 20px rgb(22, 73, 132);
+        }
+
+        /* Style for the NewsFlow title */
+        .newsflow-title {
+            color: #fff; /* White text color */
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7); /* Grey text shadow */
+            font-size: 2.5rem; /* Increased font size */
+            font-weight: 600; /* Thicker font weight */
+            line-height: 1.2; /* Adjusted line height */
+            margin-top: 20px; /* Added margin-top */
+        }
+    </style>
+</head>
+<body>
+    <div class="col-md-11 text-center"> <!-- Remove mt-5 class -->
+        <!-- Apply styles to just the NewsFlow title -->
+        <span class="newsflow-title">NewsFlow</span>
+    </div>
+    <div class="col-md-11">
+        <div class="row">
+            {% for i in articles %}
+                <div class="col-md-4 mb-4">
+                    <div class="card rounded shadow-lg m-2" style="width: 100%;">
+                        <img src="{{ i.urlToImage }}" class="card-img-top" alt="...">
+                        <div class="card-body">
+                            <p class="card-text">{{ i.author }}></p>
+                            <h5 class="card-title">{{ i.title }}</h5>
+                            <p class="card-title">{{ i.source.name }}></p>
+                            <p class="card-text">{{ i.description }}</p>
+                        </div>
+                        <div class="card-footer">
+                            <small>date: {{ i.publishedAt }}</small>
+                            <a href="{{ i.url }}" class="btn btn-primary m-1">See News</a>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}

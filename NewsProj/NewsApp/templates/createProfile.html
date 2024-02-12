@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            padding-top: 50px;
+            background-color:  #629bd3;
+            font-size: 18px; 
+        }
+        .form-container {
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: #c4dceb; 
+            border-radius: 10px; 
+            box-shadow: 0 0 20px rgb(22, 73, 132); 
+            padding: 20px; 
+            margin-bottom: 20px; 
+        }
+        .form-group {
+            margin-bottom: 20px;
+        }
+        .profile-pic-container {
+            margin-top: 20px; 
+        }
+        label, input, textarea {
+            font-size: 1.1em; 
+        }
+    </style>
+</head>
+<body>
+    <div class="container form-container">
+        <h1 class="text-center mb-4">Create Profile</h1>
+        <form method="post" enctype="multipart/form-data" action="{% url 'createprofile' %}">
+            {% csrf_token %}
+            <div class="form-group">
+                <label for="name">Name:</label>
+                <input type="text" id="name" name="name" class="form-control">
+            </div>
+            <div class="form-group">
+                <label for="about">About:</label>
+                <textarea id="about" name="about" rows="4" class="form-control"></textarea>
+            </div>
+            <div class="form-group">
+                <label for="profilePic">Profile Picture:</label>
+                <input type="file" id="profilePic" name="profilePic" class="form-control-file">
+            </div>
+            <div class="form-group">
+                <label for="DOB">Date of Birth:</label>
+                <input type="date" id="DOB" name="DOB" class="form-control">
+            </div>
+            <button type="submit" class="btn btn-primary btn-submit">Submit</button>
+        </form>
+
+        {% if user and user.profile.user %}
+        <a href="{% url 'editprofile' user.username %}" class="btn btn-secondary link-style">Edit Profile</a>
+        {% endif %}
+
+    </div>
+</body>
+</html>
